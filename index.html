@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Instruction Page</title>
+  <title>ACSL • Instructions</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap CSS -->
@@ -16,6 +16,7 @@
       --card:#ffffff;
       --brand:#2563eb;
       --brand2:#0ea5e9;
+      --good:#16a34a;
     }
 
     body{
@@ -51,12 +52,14 @@
       margin: 0;
       font-size: 1.25rem;
       line-height: 1.2;
+      text-align:center;
     }
 
     .subtitle{
       margin: 0;
       color: var(--muted);
       font-size: .95rem;
+      text-align:center;
     }
 
     /* Card */
@@ -109,9 +112,7 @@
       flex:0 0 auto;
     }
 
-    .section-body{
-      padding: 16px;
-    }
+    .section-body{ padding: 16px; }
 
     /* Instructions */
     ol{
@@ -124,34 +125,7 @@
       color: var(--ink);
     }
 
-    .pdf-page{
-      width:100%;
-      margin-bottom: 16px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background:#fff;
-      user-select:none;
-      pointer-events:none;
-      -webkit-user-drag:none;
-      box-shadow: 0 6px 18px rgba(15, 23, 42, .05);
-    }
-
-    .page-indicator{
-      position: fixed;
-      top: 16px;
-      right: 18px;
-      z-index: 1000;
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius: 999px;
-      padding: 8px 12px;
-      font-size: .9rem;
-      color: var(--muted);
-      box-shadow: 0 10px 22px rgba(15, 23, 42, .06);
-      user-select:none;
-      white-space: nowrap;
-    }
-
+    /* Fixed indicators */
     .time-indicator{
       position: fixed;
       top: 16px;
@@ -168,19 +142,72 @@
       white-space: nowrap;
     }
 
+    /* Start CTA */
+    .cta{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 14px 16px;
+      border-top: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .checkline{
+      display:flex;
+      align-items:center;
+      gap:.6rem;
+      color: var(--muted);
+      font-size: .95rem;
+      user-select:none;
+    }
+
+    .checkline input{
+      width: 18px;
+      height: 18px;
+      border-radius: 6px;
+      accent-color: var(--brand);
+    }
+
+    .btn-start{
+      border:0;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      color:#fff;
+      background: linear-gradient(180deg, var(--brand), var(--brand2));
+      box-shadow: 0 10px 22px rgba(37,99,235,.22);
+      transition: transform .12s ease, filter .12s ease, opacity .12s ease;
+    }
+    .btn-start:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+    .btn-start:disabled{
+      opacity: .55;
+      cursor: not-allowed;
+      transform: none;
+      filter: none;
+      box-shadow: none;
+    }
+
+    .hint{
+      margin: 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
     @media (max-width: 576px){
       .wrap{ max-width: 100%; }
       .title{ font-size: 1.1rem; }
-      .page-indicator{ top: 10px; right: 10px; }
       .time-indicator{ top: 10px; left: 10px; }
+      .cta{ align-items:stretch; }
+      .btn-start{ width: 100%; }
     }
   </style>
 </head>
 <body>
 
   <div class="time-indicator">Exam Time: 10:00 AM – 2:00 PM</div>
-
-  <div class="page-indicator" id="pageIndicator">Page 1 / 1</div>
 
   <div class="container py-5 wrap">
 
@@ -191,67 +218,58 @@
       <p class="subtitle">Please read the instructions carefully before starting the exam.</p>
     </header>
 
-    <!-- Instructions -->
-    <div class="section mb-4">
-      <div class="section-head">
-        <h5 class="section-h"><span class="dot"></span>Instructions</h5>
-      </div>
-      <div class="section-body">
-        <ol>
-          <li>Please solve the programming question at the following link: <a href="https://www.onlinegdb.com/">Online Compiler</a></li>
-          <li>Review all pages of the document below.</li>
-          <li>Proceed only after completing the review.</li>
-        </ol>
-      </div>
-    </div>
-
-    <!-- Document -->
     <div class="section">
       <div class="section-head">
-        <h5 class="section-h"><span class="dot"></span>Problem</h5>
-        <span class="badge-soft" id="totalBadge">Total: 0 pages</span>
+        <h5 class="section-h"><span class="dot"></span>Instructions</h5>
+        <span class="badge-soft">Before you start</span>
       </div>
 
       <div class="section-body">
-        <img src="page1.png" class="pdf-page" alt="Page 1">
-<!--         <img src="page2.png" class="pdf-page" alt="Page 2">
-        <img src="page3.png" class="pdf-page" alt="Page 1">
-        <img src="page4.png" class="pdf-page" alt="Page 2"> -->
+        <ol>
+          <li>Please solve the programming question at the following link:
+            <a href="https://www.onlinegdb.com/" target="_blank" rel="noopener">Online Compiler</a>
+          </li>
+          <li>Do not refresh the exam page once you start.</li>
+          <li>Make sure your name and class information are correct.</li>
+          <li>When you’re ready, confirm you’ve read all instructions and click <b>Start Exam</b>.</li>
+        </ol>
+        <p class="hint mt-3 mb-0">Tip: Open the compiler in a new tab so you can switch back to the exam easily.</p>
+      </div>
+
+      <div class="cta">
+        <label class="checkline">
+          <input type="checkbox" id="agreeCheck">
+          <span>I have read and understand the instructions.</span>
+        </label>
+
+        <a class="btn btn-start btn-start-link" id="startBtn" href="short8d3d3adf-25ba-4081-8984-23a3961d62cc.html" aria-disabled="true">Start Exam</a>
       </div>
     </div>
 
   </div>
 
   <script>
-    // Disable right-click everywhere
-    document.addEventListener('contextmenu', function (e) {
-      e.preventDefault();
-    });
+    const agreeCheck = document.getElementById('agreeCheck');
+    const startBtn = document.getElementById('startBtn');
 
-    // Disable image dragging
-    document.querySelectorAll('img').forEach(img => {
-      img.setAttribute('draggable', 'false');
-    });
-
-    // Page indicator logic
-    const pages = document.querySelectorAll('.pdf-page');
-    const indicator = document.getElementById('pageIndicator');
-    const totalBadge = document.getElementById('totalBadge');
-    const total = pages.length || 1;
-
-    totalBadge.textContent = `Total: ${total} page${total === 1 ? '' : 's'}`;
-
-    function updatePageIndicator(){
-      let current = 1;
-      pages.forEach((page, idx) => {
-        const r = page.getBoundingClientRect();
-        if (r.top <= window.innerHeight * 0.55) current = idx + 1;
-      });
-      indicator.textContent = `Page ${current} / ${total}`;
+    function syncStartState(){
+      const ok = !!agreeCheck.checked;
+      startBtn.classList.toggle('disabled', !ok);
+      startBtn.setAttribute('aria-disabled', String(!ok));
+      if(!ok){
+        startBtn.addEventListener('click', preventIfDisabled, { once:false });
+      }
     }
 
-    window.addEventListener('scroll', updatePageIndicator, { passive: true });
-    window.addEventListener('load', updatePageIndicator);
+    function preventIfDisabled(e){
+      if(startBtn.classList.contains('disabled')){
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }
+
+    agreeCheck.addEventListener('change', syncStartState);
+    syncStartState();
   </script>
 
   <!-- Bootstrap JS -->
